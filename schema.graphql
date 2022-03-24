@@ -1,0 +1,25 @@
+type Payroll @entity {
+  id: ID!
+  deposit: Int!
+  remainingBalance: Int!
+  currencyId: Int!
+  ratePerSec: Int!
+  recipient: String! @index
+  sender: String! @index
+  startTime: Int!
+  stopTime: Int!
+}
+
+#
+# Provides information about an Payroll account
+#
+type Account @entity {
+  " Equals to: <accountAddress>"
+  id: ID!
+  " Account address "
+  address: String! @index
+  " Inbound payroll "
+  inBound: ID[]
+  " Outbound payroll"
+  outBound: ID[]
+}
