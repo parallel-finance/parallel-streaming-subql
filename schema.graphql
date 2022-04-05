@@ -1,4 +1,4 @@
-type Payroll @entity {
+type Stream @entity {
   id: ID!
   deposit: Int!
   remainingBalance: Int!
@@ -13,13 +13,10 @@ type Payroll @entity {
 #
 # Provides information about an Payroll account
 #
-type Account @entity {
-  " Equals to: <accountAddress>"
-  id: ID!
-  " Account address "
-  address: String! @index
+type StreamAccount @entity {
+  id: ID! 
   " Inbound payroll "
-  inBound: ID[]
+  inBound: [String]!
   " Outbound payroll"
-  outBound: ID[]
+  outBound: [String]!
 }
