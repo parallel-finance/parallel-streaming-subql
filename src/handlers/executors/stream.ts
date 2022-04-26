@@ -8,7 +8,7 @@ type StreamProps = {
   id: number
   deposit: number
   remainingBalance: number
-  currencyId: number
+  assetId: number
   ratePerSec: number
   sender: string
   startTime: number
@@ -97,7 +97,7 @@ export const handleCreateStream = async ({
   },
   extrinsic
 }: SubstrateEvent) => {
-  const [id, sender, recipient, deposit, currencyId, startTime, stopTime] =
+  const [id, sender, recipient, deposit, assetId, startTime, stopTime] =
     JSON.parse(data.toString()) as [
       number,
       string,
@@ -115,7 +115,7 @@ export const handleCreateStream = async ({
     recipient,
     id: id.toString(),
     deposit,
-    currencyId,
+    assetId,
     ratePerSec,
     remainingBalance: deposit,
     sender,
