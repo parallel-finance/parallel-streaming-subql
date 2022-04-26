@@ -1,6 +1,6 @@
 {
-  "name": "parallel-crowdloan-subql",
-  "version": "1.0.0",
+  "name": "parallel-streaming-subql",
+  "version": "0.0.0",
   "description": "",
   "main": "dist/index.js",
   "scripts": {
