@@ -1,5 +1,5 @@
 import { SubstrateEvent } from '@subql/types'
-import { StreamingHandler } from './crowdloans'
+import { StreamingHandler } from './streaming'
 
 export class EventHandler {
   private event: SubstrateEvent
