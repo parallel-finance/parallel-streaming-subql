@@ -1,5 +1,5 @@
 specVersion: 0.2.0
-name: parallel-crowdloan-subql
+name: parallel-streaming-subql
 version: 1.0.0
 description: ''
 repository: 'https://github.com/parallel-finance/parallel-stream-subql'
