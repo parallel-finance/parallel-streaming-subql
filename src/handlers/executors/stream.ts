@@ -13,6 +13,7 @@ type StreamProps = {
   sender: string
   startTime: number
   stopTime: number
+  createdExtHash: string
 }
 
 type StreamAccountProps = {
@@ -119,7 +120,8 @@ export const handleCreateStream = async ({
     remainingBalance: deposit,
     sender,
     startTime,
-    stopTime
+    stopTime,
+    createdExtHash: extrinsic.extrinsic.hash.toString()
   })
 
   await saveRecord(header, streamRecord, "CreateStream")

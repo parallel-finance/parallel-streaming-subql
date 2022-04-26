@@ -8,11 +8,9 @@ type Stream @entity {
   sender: String! @index
   startTime: Int!
   stopTime: Int!
+  createdExtHash: String!
 }
 
-#
-# Provides information about an Payroll account
-#
 type StreamAccount @entity {
   id: ID! 
   " Inbound payroll "
