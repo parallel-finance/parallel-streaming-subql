@@ -2,17 +2,15 @@ type Stream @entity {
   id: ID!
   deposit: Int!
   remainingBalance: Int!
-  currencyId: Int!
+  assetId: Int!
   ratePerSec: Int!
   recipient: String! @index
   sender: String! @index
   startTime: Int!
   stopTime: Int!
+  createdExtHash: String!
 }
 
-#
-# Provides information about an Payroll account
-#
 type StreamAccount @entity {
   id: ID! 
   " Inbound payroll "

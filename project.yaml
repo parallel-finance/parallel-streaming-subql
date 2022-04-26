@@ -2,7 +2,7 @@ specVersion: 0.2.0
 name: parallel-crowdloan-subql
 version: 1.0.0
 description: ''
-repository: 'https://github.com/parallel-finance/parallel-crowdloan-subql'
+repository: 'https://github.com/parallel-finance/parallel-stream-subql'
 schema:
   file: ./schema.graphql
 network:

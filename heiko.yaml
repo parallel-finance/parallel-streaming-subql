@@ -1,4 +1,4 @@
-specVersion: 0.2.0
+specVersion: 0.0.0
 name: heiko-crowdloan-subql
 version: 1.0.0
 description: 'crowdloan feature via Heiko'
@@ -18,4 +18,4 @@ dataSources:
         - handler: handleEvent
           kind: substrate/EventHandler
           filter:
-            module: crowdloans
+            module: streaming
