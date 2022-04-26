@@ -1,15 +1,15 @@
 import { SubstrateEvent } from '@subql/types'
-import { STREAMEXECUTORS, Executor } from './executors'
+import { STREAMINGEXECUTORS, Executor } from './executors'
 
 export class StreamingHandler {
   static async checkAndSave(substrateEvent: SubstrateEvent) {
     const {
       event: { method }
     } = substrateEvent
-    if (method in STREAMEXECUTORS) {
-      await STREAMEXECUTORS[method](substrateEvent)
+    if (method in STREAMINGEXECUTORS) {
+      await STREAMINGEXECUTORS[method](substrateEvent)
     } else {
-      logger.warn(`Ignore unknown crowdloan method`)
+      logger.warn(`Ignore unknown streaming method`)
     }
   }
 }

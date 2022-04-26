@@ -10,5 +10,5 @@ export type Executor = (event: SubstrateEvent) => Promise<void>
 export const STREAMEXECUTORS: { [method: string]: Executor } = {
   ['CreateStream']: handleCreateStream,
   ['CancelStream']: handleCancelStream,
-  ['WithdrawFromStream']: handleWithdrawFromStream,
+  ['WithdrawFromStream']: handleWithdrawFromStream
 }

@@ -17,10 +17,10 @@ type StreamProps = {
 }
 
 type StreamAccountProps = {
-  id: string;
-  address: string;
-  inBound: string[];
-  outBound: string[];
+  id: string
+  address: string
+  inBound: string[]
+  outBound: string[]
 }
 
 const saveRecord = async (header, record, event) => {
@@ -28,64 +28,84 @@ const saveRecord = async (header, record, event) => {
     await record.save()
 
     logger.info(
-      `#${header.number.toNumber()} handle ${event} ${JSON.stringify(
-        record
-      )}`
+      `#${header.number.toNumber()} handle ${event} ${JSON.stringify(record)}`
     )
   } catch (error) {
     logger.error(`handle ${event} error: `, error)
   }
-
 }
 
 const addOutboundStream = async (header, account, id: string) => {
   // Check sender StreamAccount
-  var streamAccount = await StreamAccount.get(account) 
-  if(streamAccount === undefined) {
+  var streamAccount = await StreamAccount.get(account)
+  if (streamAccount === undefined) {
     // Create StreamAccount Record
     const senderRecord = StreamAccount.create({
       id: account,
       inBound: [],
       outBound: [id]
     })
-    await saveRecord(header, senderRecord, "Create sender StreamAccount at CreateStream") 
+    await saveRecord(
+      header,
+      senderRecord,
+      'Create sender StreamAccount at CreateStream'
+    )
   } else {
     streamAccount.outBound.push(id)
-    await saveRecord(header, streamAccount, "Update sender StreamAccount at CreateStream")
+    await saveRecord(
+      header,
+      streamAccount,
+      'Update sender StreamAccount at CreateStream'
+    )
   }
 }
 const addInboundStream = async (header, account, id: string) => {
   // Check sender StreamAccount
-  var streamAccount = await StreamAccount.get(account) 
-  if(streamAccount === undefined) {
+  var streamAccount = await StreamAccount.get(account)
+  if (streamAccount === undefined) {
     // Create StreamAccount Record
     const senderRecord = StreamAccount.create({
       id: account,
       inBound: [id],
       outBound: []
     })
-    await saveRecord(header, senderRecord, "Create recipient StreamAccount at CreateStream") 
+    await saveRecord(
+      header,
+      senderRecord,
+      'Create recipient StreamAccount at CreateStream'
+    )
   } else {
     streamAccount.inBound.push(id)
-    await saveRecord(header, streamAccount, "Update recipient StreamAccount at CreateStream")
+    await saveRecord(
+      header,
+      streamAccount,
+      'Update recipient StreamAccount at CreateStream'
+    )
   }
 }
 
 const removeInboundStream = async (header, account, id: string) => {
-  var streamAccount = await StreamAccount.get(account) 
-  const filtered = streamAccount.inBound.filter(e => e !== id)
-  await saveRecord(header, filtered, "remove recipient stream in StreamAccount at CancelStream")
+  var streamAccount = await StreamAccount.get(account)
+  const filtered = streamAccount.inBound.filter((e) => e !== id)
+  await saveRecord(
+    header,
+    filtered,
+    'remove recipient stream in StreamAccount at CancelStream'
+  )
 }
 
 const removeOutboundStream = async (header, account, id: string) => {
-  try{
-    var streamAccount = await StreamAccount.get(account) 
-    const filtered = streamAccount.outBound.filter(e => e !== id)
-    await saveRecord(header, filtered, "remove sender stream in StreamAccount at CancelStream")
-  } catch(error) {
+  try {
+    var streamAccount = await StreamAccount.get(account)
+    const filtered = streamAccount.outBound.filter((e) => e !== id)
+    await saveRecord(
+      header,
+      filtered,
+      'remove sender stream in StreamAccount at CancelStream'
+    )
+  } catch (error) {
     logger.error(`handle ${event} error: `, error)
   }
-  
 }
 
 export const handleCreateStream = async ({
@@ -124,7 +144,7 @@ export const handleCreateStream = async ({
     createdExtHash: extrinsic.extrinsic.hash.toString()
   })
 
-  await saveRecord(header, streamRecord, "CreateStream")
+  await saveRecord(header, streamRecord, 'CreateStream')
 
   // Add Outbound stream to sender
   await addOutboundStream(header, sender, id.toString())
@@ -152,15 +172,15 @@ export const handleCancelStream = async ({
       number
     ]
 
-    Stream.remove(id.toString())
-    
-    // remove outbound stream in sender account
-    var senderAccount = StreamAccount.get(sender)
-    await removeOutboundStream(header, senderAccount, id.toString())
+  Stream.remove(id.toString())
 
-    // remove inbound stream in recipient account
-    var recipientAccount = StreamAccount.get(recipient)
-    await removeInboundStream(header, recipientAccount, id.toString())
+  // remove outbound stream in sender account
+  var senderAccount = StreamAccount.get(sender)
+  await removeOutboundStream(header, senderAccount, id.toString())
+
+  // remove inbound stream in recipient account
+  var recipientAccount = StreamAccount.get(recipient)
+  await removeInboundStream(header, recipientAccount, id.toString())
 }
 
 export const handleWithdrawFromStream = async ({
@@ -172,22 +192,21 @@ export const handleWithdrawFromStream = async ({
   },
   extrinsic
 }: SubstrateEvent) => {
-  const [id, recipient, amount] =
-    JSON.parse(data.toString()) as [
-      number,
-      string,
-      number
-    ]
-  
+  const [id, recipient, amount] = JSON.parse(data.toString()) as [
+    number,
+    string,
+    number
+  ]
+
   var stream = await Stream.get(id.toString())
 
   // check if remaining balance - withdrawn amount equals zero
-  if(stream.remainingBalance - amount === 0) {
+  if (stream.remainingBalance - amount === 0) {
     await Stream.remove(id.toString())
     await removeInboundStream(header, stream.recipient, id.toString())
     await removeOutboundStream(header, stream.sender, id.toString())
   } else {
     stream.remainingBalance -= amount
-    await saveRecord(header, stream, "WithdrawFromStream")
+    await saveRecord(header, stream, 'WithdrawFromStream')
   }
 }
