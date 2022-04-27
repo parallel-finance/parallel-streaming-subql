@@ -15,8 +15,6 @@ schema:
 network:
   genesisHash: '0x047d23fec75c03d4e00c88ee5b776a9b0822df1a2b719a0891f5ec2f6ea9e437'
   endpoint: 'wss://regnet-rpc.parallel.fi'
-  chaintypes:
-    file: ./dist/chaintypes.js
   dictionary: ''
 dataSources:
   - kind: substrate/Runtime
