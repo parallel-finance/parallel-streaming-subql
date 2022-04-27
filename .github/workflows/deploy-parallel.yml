@@ -1,4 +1,4 @@
-name: Deploy with staging RPC
+name: Deploy with Heiko RPC
 
 on:
   workflow_dispatch:
@@ -25,11 +25,11 @@ jobs:
 
       - name: Install dependencies
         run: yarn
-      
+
       - name: Generate schema type
         run: yarn codegen
 
       - name: Publish to IPFS
-        run: yarn ipfs:publish
+        run: yarn ipfs:publish -f parallel.yaml
         env:
           SUBQL_ACCESS_TOKEN: ${{ github.event.inputs.subqlAccessToken }}
