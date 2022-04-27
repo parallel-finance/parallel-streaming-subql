@@ -30,6 +30,6 @@ jobs:
         run: yarn codegen
 
       - name: Publish to IPFS
-        run: yarn ipfs:publish
+        run: yarn ipfs:publish -f heiko.yaml
         env:
           SUBQL_ACCESS_TOKEN: ${{ github.event.inputs.subqlAccessToken }}

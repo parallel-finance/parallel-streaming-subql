@@ -16,8 +16,6 @@ network:
   genesisHash: '0x4975d5639ff79cc63b2e41939e77c54be6c414c6ebb6a601cc341431ea8ba89a'
   endpoint: 'wss://rpc.parallel.fi'
   dictionary: 'https://api.subquery.network/sq/subquery/parallel-dictionary'
-  chaintypes:
-    file: ./dist/chaintypes.js
 dataSources:
   - kind: substrate/Runtime
     startBlock: 44417
