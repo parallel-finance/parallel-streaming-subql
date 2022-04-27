@@ -1,0 +1,28 @@
+specVersion: 1.0.0
+name: streaming-subql-heiko-dev
+version: 1.0.0
+description: 'Heiko regnet streaming subquery indexer'
+repository: 'https://github.com/parallel-finance/parallel-streaming-subql'
+runner:
+  node:
+    name: '@subql/node'
+    version: '0.33.0'
+  query:
+    name: '@subql/query'
+    version: '^0.12.0'
+schema:
+  file: ./schema.graphql
+network:
+  genesisHash: '0x047d23fec75c03d4e00c88ee5b776a9b0822df1a2b719a0891f5ec2f6ea9e437'
+  endpoint: 'wss://regnet-rpc.parallel.fi'
+  dictionary: ''
+dataSources:
+  - kind: substrate/Runtime
+    startBlock: 50838
+    mapping:
+      file: ./dist/index.js
+      handlers:
+        - handler: handleEvent
+          kind: substrate/EventHandler
+          filter:
+            module: streaming
