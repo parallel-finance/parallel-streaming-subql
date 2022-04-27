@@ -1,8 +1,8 @@
 specVersion: 0.0.0
-name: heiko-crowdloan-subql
+name: heiko-streaming-subql
 version: 1.0.0
-description: 'crowdloan feature via Heiko'
-repository: 'https://github.com/parallel-finance/parallel-crowdloan-subql'
+description: 'streaming subquery indexer feature via Heiko'
+repository: 'https://github.com/parallel-finance/parallel-streaming-subql'
 schema:
   file: ./schema.graphql
 network:
