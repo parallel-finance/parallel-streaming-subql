@@ -1,4 +1,4 @@
-name: Deploy with staging RPC
+name: Deploy Heiko dev
 
 on:
   workflow_dispatch:
