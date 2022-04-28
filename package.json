@@ -6,7 +6,7 @@
   "scripts": {
     "codegen": "./node_modules/@subql/cli/bin/run codegen",
     "build": "./node_modules/@subql/cli/bin/run  build",
-    "ipfs:publish": "subql publish",
+    "ipfs:publish": "./node_modules/@subql/cli/bin/run   publish",
     "format": "prettier --config .prettierrc.json 'src/**/*.ts' --write",
     "docker-compose": "docker-compose pull && docker-compose up"
   },
