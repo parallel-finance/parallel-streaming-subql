@@ -2,7 +2,7 @@ import {
   handleCreateStream,
   handleWithdrawFromStream,
   handleCancelStream
-} from './stream'
+} from './handles'
 import { SubstrateEvent } from '@subql/types'
 
 export type Executor = (event: SubstrateEvent) => Promise<void>

@@ -6,11 +6,12 @@ export class StreamingHandler {
     const {
       event: { method }
     } = substrateEvent
-    console.log(`event method: ${method}`);
+    logger.info(`event method: ${method}`);
     if (method in STREAMINGEXECUTORS) {
       await STREAMINGEXECUTORS[method](substrateEvent)
     } else {
-      logger.warn(`Ignore unknown streaming method`)
+      logger.info(`event method: ${method}`);
+      logger.warn(`Ignore unknown streaming method ${method}`)
     }
   }
 }
