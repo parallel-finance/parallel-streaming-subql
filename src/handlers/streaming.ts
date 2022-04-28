@@ -1,15 +1,18 @@
 import { SubstrateEvent } from '@subql/types'
-import { STREAMINGEXECUTORS, Executor } from './executors'
+import { handleStreamCreated } from "./executors/stream";
 
 export class StreamingHandler {
-  static async checkAndSave(substrateEvent: SubstrateEvent) {
+  private event: SubstrateEvent
+
+  constructor(event: SubstrateEvent) {
+    this.event = event
+  }
+
+  public async handleStreamCreated() {
     const {
       event: { method }
-    } = substrateEvent
-    if (method in STREAMINGEXECUTORS) {
-      await STREAMINGEXECUTORS[method](substrateEvent)
-    } else {
-      logger.warn(`Ignore unknown streaming method`)
-    }
+    } = this.event
+    console.log(`event method: ${method}`);
+    await handleStreamCreated(this.event);
   }
 }

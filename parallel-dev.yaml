@@ -15,13 +15,14 @@ schema:
 network:
   genesisHash: '0x64a1c658a48b2e70a7fb1ad4c39eea35022568c20fc44a6e2e3d0a57aee6053b'
   endpoint: 'wss://regnet2-rpc.parallel.fi'
+  dictionary: ''
 dataSources:
   - kind: substrate/Runtime
     startBlock: 924097
     mapping:
       file: ./dist/index.js
       handlers:
-        - handler: handleEvent
+        - handler: handleStreamCreated
           kind: substrate/EventHandler
           filter:
             module: streaming

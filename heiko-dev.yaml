@@ -6,7 +6,7 @@ repository: 'https://github.com/parallel-finance/parallel-streaming-subql'
 runner:
   node:
     name: '@subql/node'
-    version: '0.33.0'
+    version: '0.34.0'
   query:
     name: '@subql/query'
     version: '^0.12.0'
@@ -18,11 +18,12 @@ network:
   dictionary: ''
 dataSources:
   - kind: substrate/Runtime
-    startBlock: 50838
+    startBlock: 52675
     mapping:
       file: ./dist/index.js
       handlers:
-        - handler: handleEvent
+        - handler: handleStreamCreated
           kind: substrate/EventHandler
           filter:
             module: streaming
+            event: StreamCreated
