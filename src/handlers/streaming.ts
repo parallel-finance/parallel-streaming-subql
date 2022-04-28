@@ -6,6 +6,7 @@ export class StreamingHandler {
     const {
       event: { method }
     } = substrateEvent
+    console.log(`event method: ${method}`);
     if (method in STREAMINGEXECUTORS) {
       await STREAMINGEXECUTORS[method](substrateEvent)
     } else {

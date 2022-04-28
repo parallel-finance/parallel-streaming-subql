@@ -9,10 +9,6 @@ export class EventHandler {
   }
 
   public async save() {
-    const {
-      event: { method }
-    } = this.event
-    console.log(`event method: ${method}`);
     await StreamingHandler.checkAndSave(this.event)
   }
 }
