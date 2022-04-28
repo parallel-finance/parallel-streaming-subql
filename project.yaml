@@ -10,7 +10,7 @@ network:
   endpoint: 'wss://regnet-rpc.parallel.fi'
 dataSources:
   - kind: substrate/Runtime
-    startBlock: 10000
+    startBlock: 50000
     mapping:
       file: ./dist/index.js
       handlers:
