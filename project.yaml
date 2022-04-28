@@ -1,20 +1,20 @@
 specVersion: 0.2.0
-name: parallel-crowdloan-subql
-version: 1.0.0
+name: parallel-streaming-subql
+version: 0.0.0
 description: ''
-repository: 'https://github.com/parallel-finance/parallel-crowdloan-subql'
+repository: 'https://github.com/parallel-finance/parallel-streaming-subql'
 schema:
   file: ./schema.graphql
 network:
-  genesisHash: '0x5af9097d0e1c7a3b125a94c9579ca700490d337c655e1d72d05279b3b52253ae'
-  endpoint: 'wss://staging-rpc.parallel.fi'
+  genesisHash: '0x047d23fec75c03d4e00c88ee5b776a9b0822df1a2b719a0891f5ec2f6ea9e437'
+  endpoint: 'wss://regnet-rpc.parallel.fi'
 dataSources:
   - kind: substrate/Runtime
-    startBlock: 1
+    startBlock: 10000
     mapping:
       file: ./dist/index.js
       handlers:
         - handler: handleEvent
           kind: substrate/EventHandler
           filter:
-            module: crowdloans
+            module: streaming

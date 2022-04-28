@@ -4,8 +4,8 @@
   "description": "",
   "main": "dist/index.js",
   "scripts": {
-    "codegen": "subql codegen",
-    "build": "subql build",
+    "codegen": "./node_modules/@subql/cli/bin/run codegen",
+    "build": "./node_modules/@subql/cli/bin/run  build",
     "ipfs:publish": "subql publish",
     "format": "prettier --config .prettierrc.json 'src/**/*.ts' --write",
     "docker-compose": "docker-compose pull && docker-compose up"

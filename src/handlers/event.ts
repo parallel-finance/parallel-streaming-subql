@@ -1,5 +1,5 @@
 import { SubstrateEvent } from '@subql/types'
-import { CrowdloanHandler } from './crowdloans'
+import { StreamingHandler } from './streaming'
 
 export class EventHandler {
   private event: SubstrateEvent
@@ -9,6 +9,6 @@ export class EventHandler {
   }
 
   public async save() {
-    await CrowdloanHandler.checkAndSave(this.event)
+    await StreamingHandler.checkAndSave(this.event)
   }
 }
