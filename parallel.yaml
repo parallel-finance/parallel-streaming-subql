@@ -22,7 +22,7 @@ dataSources:
     mapping:
       file: ./dist/index.js
       handlers:
-        - handler: handleEvent
+        - handler: handleStreamCreated
           kind: substrate/EventHandler
           filter:
             module: streaming

@@ -1,8 +1,8 @@
 import { SubstrateEvent } from '@subql/types'
-import { EventHandler } from '../handlers/event'
+import { StreamingHandler } from '../handlers/streaming'
 
-export async function handleEvent(event: SubstrateEvent): Promise<void> {
-  const handler = new EventHandler(event)
+export async function handleStreamCreated(event: SubstrateEvent): Promise<void> {
+  const handler = new StreamingHandler(event)
 
-  await handler.save()
+  await handler.handleStreamCreated()
 }

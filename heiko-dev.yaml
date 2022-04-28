@@ -18,11 +18,11 @@ network:
   dictionary: ''
 dataSources:
   - kind: substrate/Runtime
-    startBlock: 50838
+    startBlock: 52675
     mapping:
       file: ./dist/index.js
       handlers:
-        - handler: handleEvent
+        - handler: handleStreamCreated
           kind: substrate/EventHandler
           filter:
             module: streaming
