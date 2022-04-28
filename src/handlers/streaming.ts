@@ -13,7 +13,6 @@ export class StreamingHandler {
       event: { method }
     } = this.event
     console.log(`event method: ${method}`);
-    // console.log(JSON.stringify(this.event));
     await handleStreamCreated(this.event);
   }
 }

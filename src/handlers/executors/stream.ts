@@ -14,6 +14,7 @@ const saveStreamAccount = async (blockHeight: number, record, event) => {
   }
 }
 
+// TODO: remove this function as we won't need it.
 const addOutboundStream = async (header, account, id: string) => {
   // Check sender StreamAccount
   const currentStreamAccount = await StreamAccount.get(account)
@@ -39,6 +40,7 @@ const addOutboundStream = async (header, account, id: string) => {
   }
 }
 
+// TODO: remove this function as we won't need it.
 const addInboundStream = async (header, account, id: string) => {
   // Check sender StreamAccount
   const currentStreamAccount = await StreamAccount.get(account)
