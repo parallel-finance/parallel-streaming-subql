@@ -26,7 +26,7 @@ export const handleStreamCreated = async (substrateEvent: SubstrateEvent) => {
     number,
     string,
     string,
-    string,
+    bigint,
     number,
     number,
     number
@@ -47,6 +47,7 @@ export const handleStreamCreated = async (substrateEvent: SubstrateEvent) => {
     sender: anyChainSenderAddress,
     startTime: new Date(startTime*1000),
     stopTime: new Date(stopTime*1000),
+    blockHeight,
     createdExtHash
   })
 
