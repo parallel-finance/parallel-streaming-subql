@@ -18,7 +18,7 @@ network:
   dictionary: ''
 dataSources:
   - kind: substrate/Runtime
-    startBlock: 0
+    startBlock: 1
     mapping:
       file: ./dist/index.js
       handlers:
