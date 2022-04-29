@@ -1,11 +1,12 @@
 type Stream @entity {
   id: ID!
-  deposit: String!
-  remainingBalance: String!
+  deposit: BigInt!
+  remainingBalance: BigInt!
   assetId: Int!
   recipient: String! @index
   sender: String! @index
   startTime: Date!
   stopTime: Date!
+  blockHeight: Int! @index
   createdExtHash: String!
 }
