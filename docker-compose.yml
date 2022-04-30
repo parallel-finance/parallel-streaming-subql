@@ -24,8 +24,8 @@ services:
     volumes:
       - ./:/app
     command:
-      - -f=/app/project.yaml
-      - --local
+      - -f=/app/heiko-dev.yaml
+      - --db-schema=app
 
   graphql-engine:
     image: onfinality/subql-query:latest

@@ -26,3 +26,9 @@ dataSources:
           kind: substrate/EventHandler
           filter:
             module: streaming
+            method: StreamCreated
+        - handler: handleStreamWithdrawn
+          kind: substrate/EventHandler
+          filter:
+            module: streaming
+            method: StreamWithdrawn
