@@ -1,7 +1,7 @@
 type Stream @entity {
   id: ID!
-  deposit: BigInt!
-  remainingBalance: BigInt!
+  deposit: String!
+  remainingBalance: String!
   assetId: Int!
   recipient: String! @index
   sender: String! @index
