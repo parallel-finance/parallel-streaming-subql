@@ -1,8 +1,12 @@
 import { SubstrateEvent } from '@subql/types'
-import { StreamingHandler } from '../handlers/streaming'
+import { processStreamCreatedEvent, processStreamWithdrawnEvent } from "../handlers/executors/stream";
 
 export async function handleStreamCreated(event: SubstrateEvent): Promise<void> {
-  const handler = new StreamingHandler(event)
+  await processStreamCreatedEvent(event)
+}
 
-  await handler.handleStreamCreated()
+export async function handleStreamWithdrawn(event: SubstrateEvent): Promise<void> {
+  const {event: {method}} = event;
+  logger.info(`event: ${JSON.stringify(event)}`);
+  await processStreamWithdrawnEvent(event)
 }

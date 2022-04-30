@@ -14,7 +14,7 @@ const saveStream = async (blockHeight: number, stream: Stream, event) => {
   }
 }
 
-export const handleStreamCreated = async (substrateEvent: SubstrateEvent) => {
+export const processStreamCreatedEvent = async (substrateEvent: SubstrateEvent) => {
   const {
     event: { data },
     block: {
@@ -54,4 +54,21 @@ export const handleStreamCreated = async (substrateEvent: SubstrateEvent) => {
   logger.info(JSON.stringify(streamRecord));
 
   await saveStream(blockHeight, streamRecord, 'StreamCreated')
+}
+
+export const processStreamWithdrawnEvent = async (substrateEvent: SubstrateEvent) => {
+  const {
+    event: { data },
+    block: {
+      block: { header }
+    },
+  } = substrateEvent;
+  const blockHeight: number = header.number.toNumber();
+  logger.info(`process withdrawn event: ${JSON.stringify(substrateEvent)}`);
+
+  const [id,,, amount] = JSON.parse(data.toString()) as [number, string, number, bigint]
+  const streamRecord = await Stream.get(id.toString())
+  streamRecord.remainingBalance = streamRecord.remainingBalance - BigInt(amount);
+  streamRecord.blockHeight = blockHeight;
+  await saveStream(blockHeight, streamRecord, 'StreamWithdrawn')
 }

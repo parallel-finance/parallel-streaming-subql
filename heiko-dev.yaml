@@ -18,7 +18,7 @@ network:
   dictionary: ''
 dataSources:
   - kind: substrate/Runtime
-    startBlock: 1
+    startBlock: 8280
     mapping:
       file: ./dist/index.js
       handlers:
@@ -26,4 +26,9 @@ dataSources:
           kind: substrate/EventHandler
           filter:
             module: streaming
-            event: StreamCreated
+            method: StreamCreated
+        - handler: handleStreamWithdrawn
+          kind: substrate/EventHandler
+          filter:
+            module: streaming
+            method: StreamWithdrawn
